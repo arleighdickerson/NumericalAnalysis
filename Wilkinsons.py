@@ -1,7 +1,10 @@
 import numpy as np
 from matplotlib import pyplot
+from PIL.ImageChops import difference
 
 N = 20
+
+roots = range(1, N + 1)
 
 inputValues = np.linspace(0, N, 600)
 
@@ -11,11 +14,6 @@ def clenshaw(x, index=1, accum=1):
     else :
         return clenshaw(x, index + 1, accum * (x - index))
     
-# ensures that roots evaluate to zero (low hanging fruit)
-def clenshawTest() :
-    for x in range(1, N + 1):
-        assert clenshaw(x) == 0
-
 # construct our (wilkinson's) polynomial instance
 # verified output on wikipedia
 def buildPolynomial():
@@ -24,9 +22,11 @@ def buildPolynomial():
         polynomialValue *= np.poly1d([1, (i / -1)])
     return polynomialValue
 
-def coefficientList():
+#list of coefficients for our polynomial 
+def coefficientList(ascendingDegrees = True):
     coefficients = buildPolynomial().coeffs.tolist()
-    coefficients.reverse()
+    if(ascendingDegrees):
+        coefficients.reverse()
     return coefficients
 
 # param x, value to be evald
@@ -39,7 +39,7 @@ def naive(x, a=coefficientList()):
     return accum
 
 def testRoots(f):
-    for x in range(1,N+1):
+    for x in range(1, N + 1):
         assert f(x) == 0
 
 def makeClenshawData():
@@ -72,6 +72,15 @@ def clenshawNaiveSemilog():
     naiveData = makeNaiveData()
     pyplot.semilogy(
                     clenshawData.keys(), clenshawData.values(), "ro",
-                    naiveData.keys(),naiveData.values(),"bo")
+                    naiveData.keys(), naiveData.values(), "bo")
     pyplot.show()
+    
+def plotDifferenceInAbs():
+    clenshawData = makeClenshawData()
+    naiveData = makeNaiveData()
+    results = {}
+    for x in inputValues:
+        difference = clenshawData[x] - naiveData[x]
+        results[x] = abs(difference)
+    pyplot.semilogy(results.keys(), results.values(), "bo")
     
