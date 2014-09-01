@@ -31,3 +31,25 @@ def naive(x,a):
     for k in range(len(a)):
         accum += a[k] * (x ** k)
     return accum
+
+def makeClenshawData():
+    results = {}
+    for x in inputValues:
+        results[x] = clenshaw(x)
+    return results
+
+
+def makeNumpyPolyData():
+    polynomial = buildPolynomial()
+    results = {}
+    for x in inputValues:
+        results[x] = polynomial(x)
+    return results
+
+def makeNaiveData():
+    coefficients = buildPolynomial().coeffs.tolist()
+    coefficients.reverse()
+    results = {}
+    for x in inputValues:
+        results[x] = naive(x, coefficients)
+    return results
