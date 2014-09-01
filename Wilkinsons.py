@@ -1,5 +1,5 @@
 import numpy as np
-import pylab as pl
+from matplotlib import pyplot
 
 N = 20
 
@@ -64,5 +64,14 @@ def makeNaiveData():
     return results
 
 def showPlot(data):
-    pl.plot(data.keys(), data.values(), "ro")
-    pl.show()
+    pyplot.semilogy(data.keys(), data.values(), "ro")
+    pyplot.show()
+
+def clenshawNaiveSemilog():
+    clenshawData = makeClenshawData()
+    naiveData = makeNaiveData()
+    pyplot.semilogy(
+                    clenshawData.keys(), clenshawData.values(), "ro",
+                    naiveData.keys(),naiveData.values(),"bo")
+    pyplot.show()
+    
