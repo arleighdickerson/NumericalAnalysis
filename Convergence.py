@@ -5,6 +5,8 @@ Created on Sep 17, 2014
 '''
 from pylab import *
 
+seqNums = range(1, 4)
+
 def keys(seqNum):
     length = len(values(seqNum))  # inefficient
     assert seqNum in range(1, 4)
@@ -59,16 +61,16 @@ def algebraic(k, v):
 def showPlot(f, seqNum):
     k = keys(seqNum)
     v = values(seqNum)
-    print(k)
-    print(v)
+    print('sequence number: ' + str(seqNum))
+    print('plot type: ' + str(f))
     f(k, v)
     show()
-
-def showAll(seqNum):
-    showPlot(geometric, seqNum)
-    showPlot(linearGeometric, seqNum)
-    showPlot(algebraic, seqNum)
-
-map(showAll, range(1, 4))
-# linearGeometric(k1, v1)
-# linearGeometric(k2, v2)
+    print('')
+    
+def basicPlot(k, v):
+    plot(k, v)
+    
+# map(plotSeq, seqNums)
+for num in seqNums:
+    for f in [basicPlot, geometric, linearGeometric, algebraic]:
+        showPlot(f, num)
