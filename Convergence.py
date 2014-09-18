@@ -114,3 +114,5 @@ def showAll():
     for num in SEQUENCE_NUMBERS:
         for f in [plot, geometric, linearGeometric, algebraic]:
             showPlot(f, num)
+
+showAll()
