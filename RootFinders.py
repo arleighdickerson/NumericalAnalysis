@@ -2,7 +2,8 @@
 @author: Arleigh Dickerson
 '''
 from math import fabs, sin, pi
-from numpy import ceil, log2, cos
+from numpy import ceil, log2, cos, ones, inf
+from numpy.dual import norm, solve
 
 
 def bisection(f, a, b, tol=1e-9):
@@ -33,4 +34,21 @@ def newton(f, fPrime, x0, tol=1e-16, maximumIterations=50):
         counter += 1
         xa.append(x)
 
+    return xa
+
+def newtonSystem(f, J, x0, tol=1e-10, maxIt=50):
+    N = len(x0)
+    dx, fx = ones((N,)), ones((N,))
+    count = 0
+    xa = []
+    xa.append(x0)
+    x = x0
+    
+    while norm(dx, inf) > tol or norm(fx, inf > tol) and count <= maxIt:
+        fx, fpx = f(x), J(x)
+        dx = solve(fpx, -fx)
+        x += dx
+        count += 1
+        xa.append(x)
+    
     return xa
