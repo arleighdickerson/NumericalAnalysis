@@ -25,7 +25,7 @@ def zGenerator():
 
 zs = zGenerator()
 
-def animate(args):
+def animate(frame):
     '''
      @param frame: the current frame number. Starts at zero.
      @type frame: int
