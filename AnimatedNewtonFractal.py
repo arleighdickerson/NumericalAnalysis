@@ -29,7 +29,7 @@ def animate(frame):
     '''
      @param frame: the current frame number. Starts at zero.
      @type frame: int
-     @return: the stuff to be contained within frame of to be animated
+     @return: the stuff to be contained within frame to be animated
     '''
     return plt.contourf(x, y, zs.next(), [-1, 0, 1], cmap="summer", blit=True)
 
