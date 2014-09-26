@@ -31,7 +31,7 @@ def animate(frame):
      @type frame: int
      @return: the stuff to be contained within frame to be animated
     '''
-    return plt.contourf(x, y, zs.next(), [-1, 0, 1], cmap="summer", blit=True)
+    return plt.contourf(x, y, zs.next(), [-1, 0, 1], cmap="summer", blit=False)
 
 # the figure to add animations to
 fig = plt.figure()
