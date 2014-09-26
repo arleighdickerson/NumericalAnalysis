@@ -1,12 +1,9 @@
 '''
 @author: Arleigh Dickerson
 '''
-from math import fabs, sin, pi
-from numpy import ceil, log2, cos, ones, inf
-from numpy.dual import norm, solve
-
 
 def bisection(f, a, b, tol=1e-9):
+    from numpy import ceil, log2
     fa, fb = f(a), f(b)
     N = int(ceil(log2((b + a) / tol)))
     x = []
