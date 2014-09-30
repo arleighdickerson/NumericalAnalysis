@@ -21,7 +21,9 @@ def zGenerator():
     for n in range(ITERATIONS):
         yield z
         print('iteration {:d}'.format(n + 1))
-        z = 2 * (z ** 3) / (3 * z ** 2 - 1)
+        zSquared = z * z
+        zCubed = zSquared * z
+        z = 2 * zCubed / (3 * zSquared - 1)
 
 zs = zGenerator()
 
