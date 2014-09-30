@@ -21,9 +21,7 @@ def zGenerator():
     for n in range(ITERATIONS):
         yield z
         print('iteration {:d}'.format(n + 1))
-        zSquared = z * z
-        zCubed = zSquared * z
-        z = 2 * zCubed / (3 * zSquared - 1)
+        z = 2 * (z ** 3) / (3 * z ** 2 - 1)
 
 zs = zGenerator()
 
@@ -33,7 +31,7 @@ def animate(frame):
      @type frame: int
      @return: the stuff to be contained within frame to be animated
     '''
-    return plt.contourf(x, y, zs.next(), [-1, 0, 1], cmap="summer", blit=False)
+    return plt.contourf(x, y, zs.__next__(), [-1, 0, 1], cmap="autumn", blit=False)
 
 # the figure to add animations to
 fig = plt.figure()
