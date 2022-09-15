@@ -1,3 +1,3 @@
 NumericalAnalysis
 =================
-Python code from Numerical Analysis course.
+Python code from MU Numerical Analysis course
